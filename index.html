@@ -2,138 +2,99 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
-<title>Happy Birthday My Wife ❤️</title>
+<title>Happy Birthday My Wife 💖</title>
 
 <style>
 body {
-  background: linear-gradient(#ff9a9e, #fad0c4);
-  font-family: Arial, sans-serif;
-  text-align: center;
-  height: 100vh;
   margin: 0;
-  overflow: hidden;
+  height: 100vh;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  font-family: 'Segoe UI', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.container {
-  margin-top: 40px;
+.card {
+  background: white;
+  width: 360px;
+  border-radius: 25px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
 }
 
 h1 {
-  color: #fff;
-  font-size: 34px;
+  color: #ff4d6d;
+  margin-bottom: 15px;
 }
 
 img {
-  width: 220px;
+  width: 100%;
   border-radius: 20px;
-  margin: 15px 0;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
-p {
-  color: #fff;
-  font-size: 20px;
-  display: none;
-  margin: 10px;
-}
-
-#time {
-  font-size: 18px;
-  color: #fff;
-  margin-top: 10px;
-  display: none;
-}
-
-button {
-  margin-top: 20px;
-  padding: 12px 25px;
-  font-size: 18px;
-  border: none;
-  border-radius: 25px;
+.button {
+  margin-top: 15px;
   background: #ff4d6d;
   color: white;
-  cursor: pointer;
+  padding: 12px;
+  border-radius: 30px;
+  font-size: 16px;
 }
 
-button:hover {
-  background: #ff1e4d;
+.time {
+  margin-top: 12px;
+  color: #ff4d6d;
+  font-weight: bold;
 }
 
-.heart {
+.hearts span {
   position: fixed;
-  font-size: 24px;
-  animation: floatUp 4s linear infinite;
+  color: pink;
+  animation: float 6s infinite;
 }
 
-@keyframes floatUp {
-  0% { transform: translateY(0); opacity: 1; }
-  100% { transform: translateY(-600px); opacity: 0; }
+@keyframes float {
+  0% {bottom: 0; opacity: 1;}
+  100% {bottom: 100vh; opacity: 0;}
 }
 </style>
 </head>
 
 <body>
-<div class="container">
+
+<div class="card">
   <h1>🎂 Happy Birthday 🎂</h1>
 
   <img src="inlove.jpg">
 
-  <button onclick="showLove()">Bấm vào đây nè Bé yêu 💝</button>
+  <div class="button">
+    Bấm vào đây nè Bé yêu 💞
+  </div>
 
-  <p id="vn">
-    Chúc mừng sinh nhật vợ yêu 💕<br>
-    Tuổi mới mong e luôn hp và xinh đẹp<br>
-    Yêu anh nhiều hơn và mỉm cười thật nhiều Vợ nhé ❤️.
-  </p>
-
-  <p id="en">
-    Happy Birthday my love ❤️<br>
-    Thank you for being with me,<br>
-    🐖❤️.
-  </p>
-
-  <div id="time"></div>
+  <div class="time" id="together"></div>
 </div>
 
-  <audio id="music" src="ido.mp3" loop></audio>
-</div>
+<audio autoplay loop>
+  <source src="ido.mp3" type="audio/mpeg">
+</audio>
 
 <script>
-const startDate = new Date("2023-02-09"); //
+const startDate = new Date("2023-01-01"); // đổi ngày yêu nhau
+const now = new Date();
+const days = Math.floor((now - startDate) / (1000*60*60*24));
+document.getElementById("together").innerText =
+  "💑 We have been together for " + days + " days 💑";
 
-function showLove() {
-  document.getElementById("vn").style.display = "block";
-  document.getElementById("en").style.display = "block";
-  document.getElementById("time").style.display = "block";
-
-  document.getElementById("music").play();
-  setInterval(createHeart, 300);
-  updateTime();
-}
-
-function updateTime() {
-  const now = new Date();
-  const diff = now - startDate;
-
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-
-  document.getElementById("time").innerHTML =
-    "⏳ Chúng ta đã bên nhau: <br>" +
-    days + " ngày " + hours + " giờ " + minutes + " phút 💖";
-}
-
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "❤️";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.bottom = "0px";
+for(let i=0;i<20;i++){
+  let heart=document.createElement("span");
+  heart.innerHTML="💖";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.fontSize=Math.random()*20+15+"px";
   document.body.appendChild(heart);
-
-  setTimeout(() => heart.remove(), 4000);
 }
 </script>
+
 </body>
 </html>
